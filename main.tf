@@ -1,5 +1,6 @@
+#roboshop-dev-frontend
 resource "aws_security_group" "main" {
-  name        = var.sg_name
+  name        =  "${var.project}-${var.environment}-${var.sg_name}"
   description = var.sg_description
   vpc_id      = var.vpc_id
 
@@ -11,7 +12,6 @@ resource "aws_security_group" "main" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-
   tags = merge(
     var.sg_tags,
     local.common_tags,
@@ -19,6 +19,6 @@ resource "aws_security_group" "main" {
         Name = "${var.project}-${var.environment}-${var.sg_name}"
     }
   )
-    
 }
+
 
